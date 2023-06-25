@@ -1,0 +1,60 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CPI-Calculator</title>
+
+    </head>
+    <body>
+        <div class="message" id="message">Welcome</div>
+        <div class="welcome-box" id="welcome-box">
+            <div class="welcome box1" id="welcome">
+                <form action="">
+                    <label for="StudentName">Student Name:</label>
+                    <input type="text" name="StudentName" id="Name" />
+                    <br />
+                    <label for="StudentID" id="ID">Student ID:</label>
+                    <input
+                        type="text"
+                        name="StudentID"
+                        required
+                        id="StudentID"
+                    />
+                </form>
+            </div>
+            <div class="welcome box2" id="welcome">
+                <label for="semester">Semester:</label>
+                <select name="semester" id="semester" required>
+                    <option value="" selected>Semester 1</option>
+                    <option value="">Semester 2</option>
+                    <option value="">Semester 3</option>
+                    <option value="">Semester 4</option>
+                    <option value="">Semester 5</option>
+                    <option value="">Semester 6</option>
+                    <option value="">Semester 7</option>
+                    <option value="">Semester 8</option>
+                </select>
+            </div>
+            <div class="welcome box3" id="welcome">
+                <input type="submit" value="Submit" id="submit" />
+            </div>
+        </div>
+    </body>
+    <script>
+        // this fucntions will update the variable in local storage about the values of student name and id as entered by the user
+        document.getElementById('Name').addEventListener('input', () => {
+            let name = document.getElementById('Name').value;
+            localStorage.setItem('student name', name);
+        });
+        document.getElementById('StudentID').addEventListener('input', () => {
+            let stuId = document.getElementById('StudentID').value;
+            localStorage.setItem('student id', stuId);
+        });
+        let semester = document.getElementById('semester');
+        let semesterText = semester.options[semester.selectedIndex].text;
+        document.getElementById('submit').addEventListener('click', () => {
+            window.location.href = `${semesterText}.html`;
+        });
+    </script>
+</html>
