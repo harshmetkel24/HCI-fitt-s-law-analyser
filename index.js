@@ -66,16 +66,20 @@ const renderHtml = function (event) {
     const html = htmlTextArea.value;
     const css = cssTextArea.value;
 
-    renderedHtml.innerHTML = html;
+    renderedHtml.innerHTML = `<html><body>${html}</body></html>`;
     renderedHtml.innerHTML += `<style>${css}</style>`;
     analyzeHtmlCss(html, css);
-    performFittsAnalysis(html);
+    setTimeout(() => {
+      performFittsAnalysis(html);
+    }, 2000);
   }
 
   renderAndAnalyze();
 };
 
 const getInteractiveElements = (htmlCode) => {
+  temp =
+    '<html><body><button>Click me</button><a href="#">Link</a></body></html>';
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlCode, "text/html");
   const interactiveElements = doc.querySelectorAll(
@@ -122,49 +126,28 @@ const calculateMetrics = (elements) => {
 
 function calculateDistanceToElement(element, targetElement) {
   if (!element || !targetElement) return 0;
-  const computedStyles = window.getComputedStyle(element);
-  const width =
-    computedStyles.width !== "auto" ? parseInt(computedStyles.width) : 0;
-  const height =
-    computedStyles.height !== "auto" ? parseInt(computedStyles.height) : 0;
-  const left =
-    computedStyles.left !== "auto" ? parseInt(computedStyles.left) : 0;
-  const top = computedStyles.top !== "auto" ? parseInt(computedStyles.top) : 0;
 
-  console.log(width, height, left, top);
+  const elementRect = element.getBoundingClientRect();
+  const targetRect = targetElement.getBoundingClientRect();
 
-  const elementCenterX = left + width / 2;
-  const elementCenterY = top + height / 2;
+  console.log("element", element);
+  console.log("targetElement", targetElement);
+  console.log("elementRect", elementRect);
+  console.log("targetRect", targetRect);
 
-  const computedStylesTarget = window.getComputedStyle(targetElement);
-  const targetWidth =
-    computedStylesTarget.width !== "auto"
-      ? parseInt(computedStylesTarget.width)
-      : 0;
-  const targetHeight =
-    computedStylesTarget.height !== "auto"
-      ? parseInt(computedStylesTarget.height)
-      : 0;
-  const targetLeft =
-    computedStylesTarget.left !== "auto"
-      ? parseInt(computedStylesTarget.left)
-      : 0;
-  const targetTop =
-    computedStylesTarget.top !== "auto"
-      ? parseInt(computedStylesTarget.top)
-      : 0;
+  const elementCenterX = elementRect.left + elementRect.width / 2;
+  const elementCenterY = elementRect.top + elementRect.height / 2;
 
-  console.log(targetWidth, targetHeight, targetLeft, targetTop);
-
-  const targetCenterX = targetLeft + targetWidth / 2;
-  const targetCenterY = targetTop + targetHeight / 2;
+  const targetCenterX = targetRect.left + targetRect.width / 2;
+  const targetCenterY = targetRect.top + targetRect.height / 2;
 
   const distanceX = Math.abs(targetCenterX - elementCenterX);
   const distanceY = Math.abs(targetCenterY - elementCenterY);
 
   // Calculate the Euclidean distance
-  const distance = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
-  console.log("dist", distance);
+  const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+  console.log("distance", distance);
 
   return distance;
 }
@@ -180,6 +163,7 @@ function calculateDistanceToNearestInteractive(curr, elements) {
     if (element === curr) return Infinity;
     return calculateDistanceToElement(curr, element);
   });
+  console.log("distances", distances);
   return Math.min(...distances);
 }
 
@@ -293,7 +277,7 @@ function performFittsAnalysis(htmlCode) {
 const downloadReport = function () {
   const html = `<body>${reportData}</body>`;
   console.log("Download report", reportData);
-  var val = htmlToPdfmake(reportData);
+  var val = htmlToPdfmake(html);
   var dd = {
     content: val,
     styles: {
