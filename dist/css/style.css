@@ -1059,7 +1059,6 @@ label {
 	right: 0;
 	height: 230px;
 	width: 35% !important;
-	background: #888888;
 }
 .hero-inner {
 	position: relative;
@@ -1172,7 +1171,6 @@ label {
 		left: 0;
 		height: 240px;
 		width: 44%;
-		background: #f6f8fa;
 	}
 	.features .section-title {
 		margin-bottom: 56px;

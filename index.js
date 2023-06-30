@@ -57,29 +57,23 @@ function analyzeHtmlCss(htmlCode, cssCode) {
 }
 
 const renderHtml = function (event) {
+  event.preventDefault();
   const htmlTextArea = document.querySelector(".html-content");
   const cssTextArea = document.querySelector(".css-content");
   document.querySelector(".output-container").classList.remove("d-none");
   let renderedHtml = document.querySelector(".rendered-html");
 
-  function renderAndAnalyze() {
-    const html = htmlTextArea.value;
-    const css = cssTextArea.value;
+  const tempContainer = document.createElement("div");
+  tempContainer.innerHTML = htmlTextArea.value;
+  tempContainer.innerHTML += `<style>${cssTextArea.value}</style>`;
 
-    renderedHtml.innerHTML = `<html><body>${html}</body></html>`;
-    renderedHtml.innerHTML += `<style>${css}</style>`;
-    analyzeHtmlCss(html, css);
-    setTimeout(() => {
-      performFittsAnalysis(html);
-    }, 2000);
-  }
+  renderedHtml.appendChild(tempContainer);
 
-  renderAndAnalyze();
+  analyzeHtmlCss(htmlTextArea.value, cssTextArea.value);
+  performFittsAnalysis();
 };
 
 const getInteractiveElements = (htmlCode) => {
-  temp =
-    '<html><body><button>Click me</button><a href="#">Link</a></body></html>';
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlCode, "text/html");
   const interactiveElements = doc.querySelectorAll(
@@ -214,14 +208,18 @@ function getImportantContent() {
   return Array.from(importantElements);
 }
 
-function performFittsAnalysis(htmlCode) {
-  const interactiveElements = getInteractiveElements(htmlCode);
+function performFittsAnalysis() {
+  const interactiveElements = Array.from(
+    document
+      .querySelector(".rendered-html")
+      .querySelectorAll('button, a, input[type="text"], select, textarea')
+  );
   console.log("Interactive Elements", interactiveElements);
   const metrics = calculateMetrics(interactiveElements);
 
   metrics.forEach((metric) => {
     const {
-      element,
+    element,
       targetSize,
       width,
       nearestInteractiveElementDistance,
@@ -295,4 +293,4 @@ document
   .querySelector("#download-btn")
   .addEventListener("click", downloadReport);
 
-document.querySelector(".render-btn").addEventListener("click", renderHtml);
+document.querySelector("form").addEventListener("submit", renderHtml);
