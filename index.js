@@ -1,10 +1,4 @@
 let reportData = ``;
-document.addEventListener("DOMContentLoaded", function () {
-  var codeTextarea = document.querySelector("textarea");
-  codeTextarea.addEventListener("input", function () {
-    Prism.highlightElement(codeTextarea);
-  });
-});
 
 const countHtmlElements = (htmlCode) => {
   const parser = new DOMParser();
@@ -50,8 +44,6 @@ function analyzeHtmlCss(htmlCode, cssCode) {
   const cssMetrics = processCss(cssCode);
 
   const reportContent = generateReportContent(numHtmlElements, cssMetrics);
-
-  console.log(reportContent);
 
   reportData += reportContent;
 }
@@ -101,7 +93,6 @@ const calculateMetrics = (elements) => {
       element,
       document.querySelector("#reference-point")
     );
-    const scrollableAreaDistance = calculateDistanceToScrollableArea(element);
     const importantContentDistance =
       calculateDistanceToImportantContent(element);
     return {
@@ -112,7 +103,6 @@ const calculateMetrics = (elements) => {
       nearestInteractiveElementDistance,
       nearestSubmitButtonDistance,
       referencePointDistance,
-      scrollableAreaDistance,
       importantContentDistance,
     };
   });
@@ -178,15 +168,6 @@ function calculateDistanceToReferencePoint(element, referencePoint) {
   return distance;
 }
 
-function calculateDistanceToScrollableArea(element) {
-  const scrollableAreas = getScrollableAreas();
-  const distances = scrollableAreas.map((scrollableArea) =>
-    calculateDistanceToElement(element, scrollableArea)
-  );
-  const nearestDistance = Math.min(...distances);
-  return nearestDistance;
-}
-
 function calculateDistanceToImportantContent(element) {
   const importantContent = getImportantContent();
   const distances = importantContent.map((content) =>
@@ -194,12 +175,6 @@ function calculateDistanceToImportantContent(element) {
   );
   const nearestDistance = Math.min(...distances);
   return nearestDistance;
-}
-
-function getScrollableAreas() {
-  // Retrieve scrollable areas on the page
-  const scrollableAreas = document.querySelectorAll("[data-scrollable]");
-  return Array.from(scrollableAreas);
 }
 
 function getImportantContent() {
@@ -219,13 +194,12 @@ function performFittsAnalysis() {
 
   metrics.forEach((metric) => {
     const {
-    element,
+      element,
       targetSize,
       width,
       nearestInteractiveElementDistance,
       nearestSubmitButtonDistance,
       referencePointDistance,
-      scrollableAreaDistance,
       importantContentDistance,
     } = metric;
 
@@ -237,11 +211,9 @@ function performFittsAnalysis() {
       nearestInteractiveElementDistance,
       nearestSubmitButtonDistance,
       referencePointDistance,
-      scrollableAreaDistance,
       importantContentDistance
     );
     if (distance === NaN || distance === Infinity) distance = 10000;
-    console.log("Distance", distance);
     const indexDifficulty = Math.log2(distance / targetSize + 1);
 
     // Generate analysis report
@@ -252,19 +224,21 @@ function performFittsAnalysis() {
     <p><strong>Distance to Nearest Interactive Element:</strong> ${nearestInteractiveElementDistance}px</p>
     <p><strong>Distance to Nearest Submit Button:</strong> ${nearestSubmitButtonDistance}px</p>
     <p><strong>Distance to Reference Point:</strong> ${referencePointDistance}px</p>
-    <p><strong>Distance to Scrollable Area:</strong> ${scrollableAreaDistance}px</p>
     <p><strong>Distance to Important Content:</strong> ${importantContentDistance}px</p>
     <p><strong>Index of Difficulty:</strong> ${indexDifficulty.toFixed(2)}</p>
-    <p><strong>Analysis:</strong> ${
-      indexDifficulty < 1
-        ? "The design meets Fitts' law requirements. No significant improvements are needed."
-        : "The design violates Fitts' law constraints. Consider the following improvements:"
-    }</p>
+   <p><strong>Analysis:</strong> ${
+     indexDifficulty < 1
+       ? "The design meets Fitts' law requirements. No significant improvements are needed."
+       : "The design violates Fitts' law constraints. Consider the following improvements:"
+   }</p>
     <ul>
-      <li>Increase the target size to improve accuracy and reduce errors.</li>
-      <li>Reduce the distance to interactive elements for faster interaction.</li>
-      <li>Place important content closer to the reference point for easier access.</li>
-      <li>Ensure scrollable areas are easily reachable and distinguishable.</li>
+      <li>Increase the target size to improve accuracy and reduce errors. Larger targets are easier to hit, especially for users with less precise motor control.</li>
+      <li>Reduce the distance to interactive elements for faster interaction. Minimize the distance between the user's initial cursor position and the target element to improve efficiency and reduce movement time.</li>
+      <li>Place important content closer to the reference point for easier access. Consider organizing the layout to bring frequently used or critical elements closer to the user's natural starting position or the center of the screen.</li>
+      <li>Ensure scrollable areas are easily reachable and distinguishable. If there are scrollable regions, such as long lists or content sections, make sure the scrollbars or scrollable areas are clearly visible and easily accessible without requiring excessive mouse movement.</li>
+      <li>Use visual cues to guide users to interactive elements. Employ visual affordances such as color contrast, hover effects, or iconography to draw attention to interactive elements and make them more discoverable.</li>
+      <li>Consider touch-friendly design for mobile or touch-enabled devices. Adapt the design to accommodate touch-based interactions, such as using larger touch targets and providing appropriate spacing between elements to prevent accidental touches.</li>
+      <li>Conduct user testing and gather feedback. User feedback and testing can provide valuable insights into specific pain points or areas for improvement that may not be immediately evident through the Fitts' law analysis alone.</li>
     </ul>
   `;
 
@@ -273,19 +247,37 @@ function performFittsAnalysis() {
 }
 
 const downloadReport = function () {
+  if(reportData === "") {
+    alert("Please provide the html to analyze");
+    return;
+  }
   const html = `<body>${reportData}</body>`;
   console.log("Download report", reportData);
   var val = htmlToPdfmake(html);
-  var dd = {
-    content: val,
-    styles: {
-      body: {
-        background: "#add8e6",
-        fontSize: 12,
-        lineHeight: 1.5,
-      },
-    },
-  };
+   var dd = {
+     content: val,
+     pagebreakBefore: function (
+       currentNode,
+       followingNodesOnPage,
+       nodesOnNextPage,
+       previousNodesOnPage
+     ) {
+       return (
+         currentNode.headlineLevel === 1 && followingNodesOnPage.length === 0
+       );
+     },
+     pageBackground: "#red",
+     styles: {
+       body: {
+         background: "#add8e6",
+         fontSize: 12,
+         lineHeight: 1.5,
+       },
+       page: {
+         background: "#f0f0f0",
+       },
+     },
+   };
   pdfMake.createPdf(dd).download();
 };
 

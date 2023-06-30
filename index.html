@@ -4,7 +4,8 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Agnes Template</title>
+		<title>Fitts' Law Analysis</title>
+		<link rel="icon" href="logo.png" type="image/x-icon" />
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 			rel="stylesheet"
@@ -26,65 +27,12 @@
 					<div class="site-header-inner">
 						<div class="brand header-brand">
 							<h1 class="m-0">
-								<a href="#">
-									<svg
-										width="48"
-										height="32"
-										viewBox="0 0 48 32"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<title>Agnes</title>
-										<defs>
-											<linearGradient
-												x1="0%"
-												y1="100%"
-												y2="0%"
-												id="logo-a"
-											>
-												<stop
-													stop-color="#007CFE"
-													stop-opacity="0"
-													offset="0%"
-												/>
-												<stop
-													stop-color="#007DFF"
-													offset="100%"
-												/>
-											</linearGradient>
-											<linearGradient
-												x1="100%"
-												y1="50%"
-												x2="0%"
-												y2="50%"
-												id="logo-b"
-											>
-												<stop
-													stop-color="#FF4F7A"
-													stop-opacity="0"
-													offset="0%"
-												/>
-												<stop
-													stop-color="#FF4F7A"
-													offset="100%"
-												/>
-											</linearGradient>
-										</defs>
-										<g fill="none" fill-rule="evenodd">
-											<rect
-												fill="url(#logo-a)"
-												width="32"
-												height="32"
-												rx="16"
-											/>
-											<rect
-												fill="url(#logo-b)"
-												x="16"
-												width="32"
-												height="32"
-												rx="16"
-											/>
-										</g>
-									</svg>
+								<a href="/">
+									<img
+										src="logo.png"
+										alt="Logo"
+										style="width: 60px"
+									/>
 								</a>
 							</h1>
 						</div>
@@ -117,10 +65,8 @@
 									>
 								</p>
 							</div>
-							<div class="hero-illustration is-revealing">
-								<div style="height: 400px; width: 400px">
-									<!-- image -->
-								</div>
+							<div class="hero-illustration is-revealing glow-on-hover rounded-3">
+								<img style="height: 400px; " class="rounded-3" src="anim-gif.gif" />
 							</div>
 						</div>
 					</div>
@@ -354,33 +300,48 @@
 				<div class="container">
 					<div class="footer-cta pt-5 pb-5">
 						<div class="row">
-							<div class="col-xl-4 col-md-4 mb-30">
+							<div
+								class="col-xl-4 col-md-4 mb-30 d-flex justify-content-center"
+							>
 								<div class="single-cta">
-									<i class="fas fa-map-marker-alt"></i>
 									<div class="cta-text">
-										<h4>Find us</h4>
+										<h4>
+											Find us
+											<i
+												class="fas fa-map-marker-alt"
+											></i>
+										</h4>
 										<span
-											>1010 Avenue, sw 54321,
-											chandigarh</span
+											>Daiict college, Reliance Cross Rd,
+											Gandhinagar, Gujarat 382007</span
 										>
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-4 col-md-4 mb-30">
+							<div
+								class="col-xl-4 col-md-4 mb-30 d-flex justify-content-center"
+							>
 								<div class="single-cta">
-									<i class="fas fa-phone"></i>
 									<div class="cta-text">
-										<h4>Call us</h4>
-										<span>9876543210 0</span>
+										<h4>
+											Call us <i class="fas fa-phone"></i>
+										</h4>
+										<span>91-86964-55687</span>
 									</div>
 								</div>
 							</div>
-							<div class="col-xl-4 col-md-4 mb-30">
-								<div class="single-cta">
-									<i class="far fa-envelope-open"></i>
+							<div
+								class="col-xl-4 col-md-4 mb-30 d-flex justify-content-center"
+							>
+								<div
+									class="single-cta d-flex justify-content-center"
+								>
 									<div class="cta-text">
-										<h4>Mail us</h4>
-										<span>mail@info.com</span>
+										<h4>
+											Mail us
+											<i class="far fa-envelope-open"></i>
+										</h4>
+										<span>20202001120@daiict.ac.in</span>
 									</div>
 								</div>
 							</div>
@@ -390,33 +351,17 @@
 				<div class="copyright-area">
 					<div class="container">
 						<div class="row">
-							<div
-								class="col-xl-6 col-lg-6 text-center text-lg-left"
-							>
+							<div class="col-12 text-center text-lg-left">
 								<div class="copyright-text">
-									<p>
-										Copyright &copy; 2023, All Right
-										Reserved
-										<a
-											href="https://github.com/harshmetkel24"
-											>harshmektkel24</a
-										>
-									</p>
+									Copyright &copy; 2023, All Right Reserved
+									<a href="https://github.com/harshmetkel24"
+										>harshmektkel24</a
+									>
 								</div>
 							</div>
 							<div
 								class="col-xl-6 col-lg-6 d-none d-lg-block text-right"
-							>
-								<div class="footer-menu">
-									<ul>
-										<li><a href="#">Home</a></li>
-										<li><a href="#">Terms</a></li>
-										<li><a href="#">Privacy</a></li>
-										<li><a href="#">Policy</a></li>
-										<li><a href="#">Contact</a></li>
-									</ul>
-								</div>
-							</div>
+							></div>
 						</div>
 					</div>
 				</div>
@@ -428,5 +373,12 @@
 			crossorigin="anonymous"
 		></script>
 		<script src="dist/js/main.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+			integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 	</body>
 </html>

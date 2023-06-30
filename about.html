@@ -1,128 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About - Fitts' Law Project</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>About - Fitts' Law Project</title>
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
+		<!-- Bootstrap CSS -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+		/>
 
-    <!-- Custom styles -->
-    <style>
-      body {
-        background-color: #121212;
-        color: #ffffff;
-      }
+		<!-- Custom styles -->
+		<style>
+			body {
+				background-color: #121212;
+				color: #ffffff;
+			}
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        color: #ffffff;
-      }
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				color: #ffffff;
+			}
 
-      .container {
-        max-width: 800px;
-      }
+			.container {
+				max-width: 800px;
+			}
 
-      .section {
-        margin-bottom: 4rem;
-      }
+			.section {
+				margin-bottom: 4rem;
+			}
 
-      .section h2 {
-        margin-bottom: 1.5rem;
-      }
+			.section h2 {
+				margin-bottom: 1.5rem;
+			}
 
-      .section p {
-        line-height: 1.6;
-      }
-    </style>
-  </head>
+			.section p {
+				line-height: 1.6;
+			}
+			*::-webkit-scrollbar {
+				display: none;
+			}
 
-  <body>
-    <nav
-      class="navbar top-0 navbar-expand-lg navbar-light bg-light px-4 bg-dark border-bottom border-light"
-    >
-      <a class="navbar-brand text-light" href="/"
-        ><img
-          src="logo.jpg"
-          class="rounded-3 mx-3"
-          style="width: 100px"
-          alt="Fitt's Law"
-      /></a>
-      <button
-        class="navbar-toggler bg-light"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <!-- <a class="nav-item nav-link active text-light" href="/"
-            >Home <span class="sr-only">(current)</span></a
-          > -->
-          <a
-            class="nav-item nav-link active btn btn-sm btn-outline-light"
-            href="about.html"
-            >About</a
-          >
-        </div>
-      </div>
-    </nav>
-    <div class="container my-4">
-      <section class="section">
-        <h2>About Fitts' Law</h2>
-        <p>
-          Fitts' Law is a predictive model in human-computer interaction that
-          describes the time required to move to a target area based on the size
-          and distance of the target. It states that the time to reach a target
-          is directly proportional to the distance to the target and inversely
-          proportional to the size of the target.
-        </p>
-        <p>
-          Fitts' Law has been widely applied in interface design to optimize the
-          placement and sizing of interactive elements, such as buttons and
-          links, to improve user experience and efficiency.
-        </p>
-      </section>
+			/* Hide scrollbar for IE, Edge and Firefox */
+			* {
+				-ms-overflow-style: none; /* IE and Edge */
+				scrollbar-width: none; /* Firefox */
+			}
 
-      <section class="section">
-        <h2>Working of My Fitts' Law Project</h2>
-        <p>
-          The Fitts' Law Project aims to analyze and evaluate the user interface
-          design of a web page based on Fitts' Law principles. It calculates
-          various metrics, including target size, distance to interactive
-          elements, and other relevant factors, to assess the compliance with
-          Fitts' Law guidelines.
-        </p>
-        <p>
-          The project utilizes JavaScript and DOM manipulation techniques to
-          extract information about the HTML elements and perform the necessary
-          calculations. It provides a detailed analysis report, including the
-          index of difficulty, highlighting areas that violate Fitts' Law
-          constraints and suggesting potential improvements.
-        </p>
-      </section>
-    </div>
-      <footer class="bg-dark text-light">
-      <div class="bg-secondary py-2">
-        <div class="container text-center">
-          <p class="mb-0">
-            &copy; 2023 Fitt's Analysis Website. All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
-  </body>
+			ul {
+				margin: 0px;
+				padding: 0px;
+			}
+			.footer-section {
+				background: #151414;
+				position: relative;
+			}
+			.footer-cta {
+				border-bottom: 1px solid #373636;
+			}
+
+			.cta-text {
+				padding-left: 15px;
+				display: inline-block;
+			}
+			.cta-text h4 {
+				color: #ff5e14;
+				font-size: 24px;
+				font-weight: 600;
+				margin-bottom: 2px;
+			}
+			.cta-text span {
+				color: #757575;
+				font-size: 15px;
+			}
+			.footer-content {
+				position: relative;
+				z-index: 2;
+			}
+			.footer-pattern img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 330px;
+				background-size: cover;
+				background-position: 100% 100%;
+			}
+			.footer-logo {
+				margin-bottom: 30px;
+			}
+			.footer-logo img {
+				max-width: 200px;
+			}
+			.footer-text p {
+				margin-bottom: 14px;
+				font-size: 14px;
+				color: #7e7e7e;
+				line-height: 28px;
+			}
+			.footer-social-icon span {
+				color: #fff;
+				display: block;
+				font-size: 20px;
+				font-weight: 700;
+				font-family: "Poppins", sans-serif;
+				margin-bottom: 20px;
+			}
+			.footer-social-icon a {
+				color: #fff;
+				font-size: 16px;
+				margin-right: 15px;
+			}
+			.footer-social-icon i {
+				height: 40px;
+				width: 40px;
+				text-align: center;
+				line-height: 38px;
+				border-radius: 50%;
+			}
+			.facebook-bg {
+				background: #3b5998;
+			}
+			.twitter-bg {
+				background: #55acee;
+			}
+			.google-bg {
+				background: #dd4b39;
+			}
+			.footer-widget-heading h3 {
+				color: #fff;
+				font-size: 20px;
+				font-weight: 600;
+				margin-bottom: 40px;
+				position: relative;
+			}
+			.footer-widget-heading h3::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: -15px;
+				height: 2px;
+				width: 50px;
+				background: #ff5e14;
+			}
+			.footer-widget ul li {
+				display: inline-block;
+				float: left;
+				width: 50%;
+				margin-bottom: 12px;
+			}
+			.footer-widget ul li a:hover {
+				color: #ff5e14;
+			}
+			.footer-widget ul li a {
+				color: #878787;
+				text-transform: capitalize;
+			}
+			.subscribe-form {
+				position: relative;
+				overflow: hidden;
+			}
+
+			.copyright-area {
+				background: #202020;
+				padding: 25px 0;
+				font-size: 14px;
+				text-align: center;
+			}
+
+			.copyright-text a {
+				color: #ff5e14;
+				text-align: center;
+			}
+			.footer-menu li {
+				display: inline-block;
+				margin-left: 20px;
+			}
+			.footer-menu li:hover a {
+				color: #ff5e14;
+			}
+			.footer-menu li a {
+				font-size: 14px;
+				color: #878787;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-light px-4 bg-dark border-bottom border-light"
+		>
+			<a class="navbar-brand text-light" href="/"
+				><img
+					src="logo.png"
+					class="rounded-3"
+					style="width: 48px"
+					alt="Fitt's Law"
+			/></a>
+			<button
+				class="navbar-toggler bg-light"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span></button
+			>ṅ
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a
+						class="nav-item nav-link fw-bold"
+						style="color: #ff5e14"
+						href="about.html"
+						>About</a
+					>
+				</div>
+			</div>
+		</nav>
+		<div class="container my-4">
+			<section class="section">
+				<h2>About Fitts' Law</h2>
+				<p>
+					Fitts' Law is a predictive model in human-computer
+					interaction that describes the time required to move to a
+					target area based on the size and distance of the target. It
+					states that the time to reach a target is directly
+					proportional to the distance to the target and inversely
+					proportional to the size of the target.
+				</p>
+				<p>
+					Fitts' Law has been widely applied in interface design to
+					optimize the placement and sizing of interactive elements,
+					such as buttons and links, to improve user experience and
+					efficiency.
+				</p>
+			</section>
+
+			<section class="section">
+				<h2>Working of My Fitts' Law Project</h2>
+				<p>
+					The Fitts' Law Project aims to analyze and evaluate the user
+					interface design of a web page based on Fitts' Law
+					principles. It calculates various metrics, including target
+					size, distance to interactive elements, and other relevant
+					factors, to assess the compliance with Fitts' Law
+					guidelines.
+				</p>
+				<p>
+					The project utilizes JavaScript and DOM manipulation
+					techniques to extract information about the HTML elements
+					and perform the necessary calculations. It provides a
+					detailed analysis report, including the index of difficulty,
+					highlighting areas that violate Fitts' Law constraints and
+					suggesting potential improvements.
+				</p>
+			</section>
+		</div>
+		<footer class="footer-section">
+			<div class="container">
+				<div class="footer-cta pt-5 pb-5">
+					<div class="row">
+						<div
+							class="col-xl-4 col-md-4 mb-30 d-flex justify-content-center"
+						>
+							<div class="single-cta">
+								<div class="cta-text">
+									<h4>
+										Find us
+										<i class="fas fa-map-marker-alt"></i>
+									</h4>
+									<span
+										>Daiict college, Reliance Cross Rd,
+										Gandhinagar, Gujarat 382007</span
+									>
+								</div>
+							</div>
+						</div>
+						<div
+							class="col-xl-4 col-md-4 mb-30 d-flex justify-content-center"
+						>
+							<div class="single-cta">
+								<div class="cta-text">
+									<h4>
+										Call us <i class="fas fa-phone"></i>
+									</h4>
+									<span>91-86964-55687</span>
+								</div>
+							</div>
+						</div>
+						<div
+							class="col-xl-4 col-md-4 mb-30 d-flex justify-content-center"
+						>
+							<div
+								class="single-cta d-flex justify-content-center"
+							>
+								<div class="cta-text">
+									<h4>
+										Mail us
+										<i class="far fa-envelope-open"></i>
+									</h4>
+									<span>20202001120@daiict.ac.in</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 text-center text-lg-left">
+							<div class="copyright-text">
+								Copyright &copy; 2023, All Right Reserved
+								<a href="https://github.com/harshmetkel24"
+									>harshmektkel24</a
+								>
+							</div>
+						</div>
+						<div
+							class="col-xl-6 col-lg-6 d-none d-lg-block text-right"
+						></div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
 </html>

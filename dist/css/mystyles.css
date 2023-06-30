@@ -83,19 +83,14 @@ ul {
 .footer-cta {
 	border-bottom: 1px solid #373636;
 }
-.single-cta i {
-	color: #ff5e14;
-	font-size: 30px;
-	float: left;
-	margin-top: 8px;
-}
+
 .cta-text {
 	padding-left: 15px;
 	display: inline-block;
 }
 .cta-text h4 {
-	color: #fff;
-	font-size: 20px;
+	color: #ff5e14;
+	font-size: 24px;
 	font-weight: 600;
 	margin-bottom: 2px;
 }
@@ -189,37 +184,17 @@ ul {
 	position: relative;
 	overflow: hidden;
 }
-.subscribe-form input {
-	width: 100%;
-	padding: 14px 28px;
-	background: #2e2e2e;
-	border: 1px solid #2e2e2e;
-	color: #fff;
-}
-.subscribe-form button {
-	position: absolute;
-	right: 0;
-	background: #ff5e14;
-	padding: 13px 20px;
-	border: 1px solid #ff5e14;
-	top: 0;
-}
-.subscribe-form button i {
-	color: #fff;
-	font-size: 22px;
-	transform: rotate(-6deg);
-}
+
 .copyright-area {
 	background: #202020;
 	padding: 25px 0;
-}
-.copyright-text p {
-	margin: 0;
 	font-size: 14px;
-	color: #878787;
+	text-align: center;
 }
-.copyright-text p a {
+
+.copyright-text a {
 	color: #ff5e14;
+	text-align: center;
 }
 .footer-menu li {
 	display: inline-block;
