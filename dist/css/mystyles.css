@@ -89,7 +89,7 @@ ul {
 	display: inline-block;
 }
 .cta-text h4 {
-	color: #ff5e14;
+	color: #fff;
 	font-size: 24px;
 	font-weight: 600;
 	margin-bottom: 2px;
@@ -165,7 +165,7 @@ ul {
 	bottom: -15px;
 	height: 2px;
 	width: 50px;
-	background: #ff5e14;
+	background: #fff;
 }
 .footer-widget ul li {
 	display: inline-block;
@@ -174,7 +174,7 @@ ul {
 	margin-bottom: 12px;
 }
 .footer-widget ul li a:hover {
-	color: #ff5e14;
+	color: #fff;
 }
 .footer-widget ul li a {
 	color: #878787;
@@ -193,15 +193,16 @@ ul {
 }
 
 .copyright-text a {
-	color: #ff5e14;
+	color: #fff;
 	text-align: center;
+	text-decoration: none;
 }
 .footer-menu li {
 	display: inline-block;
 	margin-left: 20px;
 }
 .footer-menu li:hover a {
-	color: #ff5e14;
+	color: #fff;
 }
 .footer-menu li a {
 	font-size: 14px;

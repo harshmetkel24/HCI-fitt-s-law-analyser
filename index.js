@@ -247,37 +247,37 @@ function performFittsAnalysis() {
 }
 
 const downloadReport = function () {
-  if(reportData === "") {
+  if (reportData === "") {
     alert("Please provide the html to analyze");
     return;
   }
   const html = `<body>${reportData}</body>`;
   console.log("Download report", reportData);
   var val = htmlToPdfmake(html);
-   var dd = {
-     content: val,
-     pagebreakBefore: function (
-       currentNode,
-       followingNodesOnPage,
-       nodesOnNextPage,
-       previousNodesOnPage
-     ) {
-       return (
-         currentNode.headlineLevel === 1 && followingNodesOnPage.length === 0
-       );
-     },
-     pageBackground: "#red",
-     styles: {
-       body: {
-         background: "#add8e6",
-         fontSize: 12,
-         lineHeight: 1.5,
-       },
-       page: {
-         background: "#f0f0f0",
-       },
-     },
-   };
+  var dd = {
+    content: val,
+    pagebreakBefore: function (
+      currentNode,
+      followingNodesOnPage,
+      nodesOnNextPage,
+      previousNodesOnPage
+    ) {
+      return (
+        currentNode.headlineLevel === 1 && followingNodesOnPage.length === 0
+      );
+    },
+    pageBackground: "#red",
+    styles: {
+      body: {
+        background: "#add8e6",
+        fontSize: 12,
+        lineHeight: 1.5,
+      },
+      page: {
+        background: "#f0f0f0",
+      },
+    },
+  };
   pdfMake.createPdf(dd).download();
 };
 
@@ -286,3 +286,47 @@ document
   .addEventListener("click", downloadReport);
 
 document.querySelector("form").addEventListener("submit", renderHtml);
+
+// Copy button functionality
+const preTags = document.querySelectorAll("pre");
+
+preTags.forEach((preTag) => {
+  // Create a copy button element
+  const copyButton = document.createElement("span");
+  copyButton.innerText = "Copy";
+  copyButton.classList.add("copy-button");
+
+  // Append the copy button to the <pre> tag
+  preTag.appendChild(copyButton);
+
+  // Add click event listener to the copy button
+  copyButton.addEventListener("click", () => {
+    // Hide the copy button temporarily
+    copyButton.style.display = "none";
+
+    // Create a range and select the text inside the <pre> tag
+    const range = document.createRange();
+    range.selectNode(preTag);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+
+    try {
+      // Copy the selected text to the clipboard
+      document.execCommand("copy");
+
+      // Alert the user that the text has been copied
+      copyButton.innerText = "Copied!";
+      setTimeout(function () {
+        copyButton.innerText = "Copy";
+      }, 2000);
+    } catch (err) {
+      console.error("Unable to copy text:", err);
+    } finally {
+      // Show the copy button again
+      copyButton.style.display = "inline";
+
+      // Deselect the text
+      window.getSelection().removeAllRanges();
+    }
+  });
+});
